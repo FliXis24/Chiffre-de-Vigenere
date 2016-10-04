@@ -29,7 +29,7 @@ private:
     void clean();
 
 public:
-    Vigenere(QWidget *pwgt = 0);
+    Vigenere(QWidget *pwgt = nullptr);
     ~Vigenere();
 
 public slots:
