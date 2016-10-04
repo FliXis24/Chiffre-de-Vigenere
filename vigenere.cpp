@@ -7,7 +7,7 @@ const QString Vigenere::BOARD = " !\"#$%&'()*+,-./0123456789:;<=>?@"
                                 "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
                                 "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 
-//Инициализация переменной длиной алфавита +1
+//Инициализация длиной алфавита +1
 const int Vigenere::BOARDEND = BOARD.length();
 
 Vigenere::Vigenere(QWidget* pwgt/*= 0*/) : QWidget(pwgt) {
