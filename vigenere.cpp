@@ -87,11 +87,11 @@ void Vigenere::fillkey(int size) {
 void Vigenere::clean() {
     //Проверяем на пустоту, если не пусто, то очищаем содержимое строк
     if(!encrypted.isEmpty())
-        encrypted.resize(0);
+        encrypted.clear();
     if(!decrypted.isEmpty())
-        decrypted.resize(0);
+        decrypted.clear();
     if(!key.isEmpty())
-        key.resize(0);
+        key.clear();
 }
 
 //Функция-слот шифрования
