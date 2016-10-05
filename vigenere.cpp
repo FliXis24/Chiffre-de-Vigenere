@@ -133,7 +133,7 @@ void Vigenere::slotButtonClickedEncrypt() {
 
 //Функция-слот дешифрования
 void Vigenere::slotButtonClickedDecrypt() {
-    //Очищая строки
+    //Очищаем строки
     clean();
 
     /*Получаем, введенный пользователем, дешифрованный текст и ключ из полей, записываем их
