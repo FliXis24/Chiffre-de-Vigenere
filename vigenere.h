@@ -12,9 +12,6 @@ private:
     //Длина алфавита +1
     static const int BOARDEND;
 
-    //Строки для хранения дешифрованного, шифрованного текста, и ключа
-    QString decrypted, encrypted, key;
-
     //Поля ввода и вывода дешифрованного и шифрованного текста
     QPlainTextEdit txtEdtDecrypted, txtEdtEnrypted;
 
@@ -22,11 +19,8 @@ private:
     QLineEdit lnEdtKey;
 
     //Функция заполнения строки ключа до нужной длины
-    //В аргументе передается требуемая длина строки
-    void fillkey(int size);
-
-    //Функция очистки строк
-    void clean();
+    //Во втором аргументе передается требуемая длина строки
+    void fillkey(QString &key, int size);
 
 public:
     Vigenere(QWidget *pwgt = nullptr);

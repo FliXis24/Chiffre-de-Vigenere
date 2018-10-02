@@ -7,7 +7,7 @@ const QString Vigenere::BOARD = " !\"#$%&'()*+,-./0123456789:;<=>?@"
                                 "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
                                 "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 
-//Инициализация длиной алфавита +1
+//Инициализация переменной длиной алфавита +1
 const int Vigenere::BOARDEND = BOARD.length();
 
 Vigenere::Vigenere(QWidget* pwgt/*= 0*/) : QWidget(pwgt) {
@@ -76,28 +76,20 @@ Vigenere::~Vigenere() {}
 
 //Функция заполнения строки ключа до нужной длины
 //В аргументе передается требуемая длина строки
-void Vigenere::fillkey(int size) {
+void Vigenere::fillkey(QString &key, int size) {
     for(int i = key.length(), j = 0; i < size; ++i, ++j)
         //Заполняем строку ключа самой собой, до тех пор, пока длина ключа не сравняется с
                                                     //требуемой длиной строки из аргумента
         key[i] = key[j];
 }
 
-//Функция очистки строк
-void Vigenere::clean() {
-    //Проверяем на пустоту, если не пусто, то очищаем содержимое строк
-    if(!encrypted.isEmpty())
-        encrypted.clear();
-    if(!decrypted.isEmpty())
-        decrypted.clear();
-    if(!key.isEmpty())
-        key.clear();
-}
-
 //Функция-слот шифрования
 void Vigenere::slotButtonClickedEncrypt() {
-    //Очищаем строки
-    clean();
+    //Очищаем поле с шифрованной строкой
+    txtEdtEnrypted.clear();
+
+    //Строки для хранения дешифрованного, шифрованного текста, и ключа
+    QString decrypted, encrypted, key;
 
     /*Получаем, введенный пользователем, дешифрованный текст и ключ из полей, записываем их
                                                                                  в строки*/
@@ -107,7 +99,7 @@ void Vigenere::slotButtonClickedEncrypt() {
     //Проверяем длину строки ключа
     if(decrypted.size() > key.size())
         //Если она меньше длины дешифрованного текста, заполняем до необходимой длины
-        fillkey(decrypted.size());
+        fillkey(key, decrypted.size());
 
     //Шифрование
     for(int i = 0, j = 0; i < decrypted.length(); ++i, ++j) {
@@ -133,10 +125,13 @@ void Vigenere::slotButtonClickedEncrypt() {
 
 //Функция-слот дешифрования
 void Vigenere::slotButtonClickedDecrypt() {
-    //Очищаем строки
-    clean();
+    //Очищаем поле с дешифрованной строкой
+    txtEdtDecrypted.clear();
 
-    /*Получаем, введенный пользователем, дешифрованный текст и ключ из полей, записываем их
+    //Строки для хранения дешифрованного, шифрованного текста, и ключа
+    QString decrypted, encrypted, key;
+
+    /*Получаем, введенный пользователем, шифрованный текст и ключ из полей, записываем их
                                                                                  в строки*/
     encrypted.append(txtEdtEnrypted.toPlainText());
     key.append(lnEdtKey.text());
@@ -144,7 +139,7 @@ void Vigenere::slotButtonClickedDecrypt() {
     //Проверяем длину строки ключа
     if(encrypted.size() > key.size())
         //Если она меньше длины шифрованного текста, заполняем до необходимой длины
-        fillkey(encrypted.size());
+        fillkey(key, encrypted.size());
 
     //Дешифрование
     for(int i = 0, j = 0; i < encrypted.length(); ++i, ++j) {
