@@ -21,14 +21,10 @@ Vigenere::Vigenere(QWidget* pwgt/*= 0*/) : QWidget(pwgt) {
     QPushButton *btnDecrypt = new QPushButton("<<");
 
     //Подключаем сигнал из кнопки шифрования к слоту
-    connect(btnEncrypt, SIGNAL(clicked()),
-            SLOT(slotButtonClickedEncrypt())
-            );
+    connect(btnEncrypt, &QAbstractButton::clicked, this, &Vigenere::slotButtonClickedEncrypt);
 
     //Подключаем сигнал из кнопки дешифрования к слоту
-    connect(btnDecrypt, SIGNAL(clicked()),
-            SLOT(slotButtonClickedDecrypt())
-            );
+    connect(btnDecrypt, &QAbstractButton::clicked, this, &Vigenere::slotButtonClickedDecrypt);
 
     //Создаем вертикальные и горизонтальные менеджеры компоновки
     //Этот будет базовым для всех остальных
@@ -75,7 +71,7 @@ Vigenere::Vigenere(QWidget* pwgt/*= 0*/) : QWidget(pwgt) {
 Vigenere::~Vigenere() {}
 
 //Функция заполнения строки ключа до нужной длины
-//В аргументе передается требуемая длина строки
+//Во втором аргументе передается требуемая длина строки
 void Vigenere::fillkey(QString &key, int size) {
     for(int i = key.length(), j = 0; i < size; ++i, ++j)
         //Заполняем строку ключа самой собой, до тех пор, пока длина ключа не сравняется с
