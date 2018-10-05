@@ -89,8 +89,8 @@ void Vigenere::slotButtonClickedEncrypt() {
 
     /*Получаем, введенный пользователем, дешифрованный текст и ключ из полей, записываем их
                                                                                  в строки*/
-    decrypted.append(txtEdtDecrypted.toPlainText());
-    key.append(lnEdtKey.text());
+    decrypted.push_back(txtEdtDecrypted.toPlainText());
+    key.push_back(lnEdtKey.text());
 
     //Проверяем длину строки ключа
     if(decrypted.size() > key.size())
@@ -129,8 +129,8 @@ void Vigenere::slotButtonClickedDecrypt() {
 
     /*Получаем, введенный пользователем, шифрованный текст и ключ из полей, записываем их
                                                                                  в строки*/
-    encrypted.append(txtEdtEnrypted.toPlainText());
-    key.append(lnEdtKey.text());
+    encrypted.push_back(txtEdtEnrypted.toPlainText());
+    key.push_back(lnEdtKey.text());
 
     //Проверяем длину строки ключа
     if(encrypted.size() > key.size())
